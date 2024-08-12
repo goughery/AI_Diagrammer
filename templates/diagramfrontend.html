@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UML Diagram Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 100px; }
+        button { margin-top: 10px; padding: 10px; }
+        img { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>UML Diagram Generator</h1>
+
+<textarea id="description" placeholder="Describe your data model or make adjustments here..."></textarea>
+<br>
+<button onclick="generateUML()">Generate UML Diagram</button>
+
+<div id="diagram"></div>
+
+<script>
+    function generateUML() {
+        const description = document.getElementById('description').value;
+        fetch('/generate-uml', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ description: description })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const img = document.createElement('img');
+            img.src = data.diagramUrl;
+            document.getElementById('diagram').innerHTML = '';
+            document.getElementById('diagram').appendChild(img);
+        });
+    }
+</script>
+
+</body>
+</html>
