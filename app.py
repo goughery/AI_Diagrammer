@@ -13,7 +13,6 @@ flask_secret_key = os.getenv('FLASK_SECRET_KEY')
 app.secret_key = flask_secret_key
 openai.api_key = openai_api_key
 
-
 def get_uml_from_gpt(description, previous_uml):
 
     if previous_uml:
@@ -76,4 +75,4 @@ def index():
     return render_template('diagramfrontend.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080)
