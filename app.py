@@ -5,8 +5,6 @@ import os
 
 app = Flask(__name__)
 
-
-
 # Retrieve the secrets from environment variables
 openai_api_key = os.getenv('OPENAI_API_KEY')
 flask_secret_key = os.getenv('FLASK_SECRET_KEY')
