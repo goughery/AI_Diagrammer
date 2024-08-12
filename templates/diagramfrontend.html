@@ -18,6 +18,7 @@
 <textarea id="description" placeholder="Describe your data model or make adjustments here..."></textarea>
 <br>
 <button onclick="generateUML()">Generate Diagram</button>
+<button onclick="reset()">Reset</button>
 
 <div id="diagram"></div>
 
@@ -38,6 +39,14 @@
             document.getElementById('diagram').innerHTML = '';
             document.getElementById('diagram').appendChild(img);
         });
+    }
+    function reset() {
+        fetch('/reset-history', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
     }
 </script>
 

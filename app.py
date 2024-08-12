@@ -65,7 +65,6 @@ def generate_uml():
 
 @app.route('/reset-history', methods=['POST'])
 def reset_history():
-    #todo add button to clear UML history
     # Clear the UML history in the session
     session.pop('uml_history', None)
     return jsonify({"message": "History cleared"})
