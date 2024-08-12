@@ -9,7 +9,7 @@ app = Flask(__name__)
 openai_api_key = os.getenv('OPENAI_API_KEY')
 flask_secret_key = os.getenv('FLASK_SECRET_KEY')
 
-# # Set the retrieved secrets in your app
+# # Set the retrieved secrets 
 app.secret_key = flask_secret_key
 openai.api_key = openai_api_key
 
@@ -35,7 +35,6 @@ def get_uml_from_gpt(description, previous_uml):
     return uml_code
 
 def compress_and_encode_uml(uml_code):
-    # Compress the PlantUML code using zlib
     plantuml_url = plantuml.PlantUML(url="http://www.planttext.com/api/plantuml/png/")
     
     # Get the image URL from the PlantUML server
@@ -66,6 +65,7 @@ def generate_uml():
 
 @app.route('/reset-history', methods=['POST'])
 def reset_history():
+    #todo add button to clear UML history
     # Clear the UML history in the session
     session.pop('uml_history', None)
     return jsonify({"message": "History cleared"})
